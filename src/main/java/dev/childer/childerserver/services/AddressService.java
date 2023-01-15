@@ -1,4 +1,4 @@
-package dev.childer.childerserver.service;
+package dev.childer.childerserver.services;
 
 import dev.childer.childerserver.models.AddressModel;
 import dev.childer.childerserver.repositories.AddressRepository;

@@ -1,7 +1,7 @@
 package dev.childer.childerserver.controller;
 
 import dev.childer.childerserver.models.ChildrenModel;
-import dev.childer.childerserver.service.ChildrenService;
+import dev.childer.childerserver.services.ChildrenService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
