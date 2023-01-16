@@ -9,9 +9,8 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "User", uniqueConstraints = {
+@Table(name = "Teacher", uniqueConstraints = {
         @UniqueConstraint(columnNames = "username"),
-        @UniqueConstraint(columnNames = "email")
 })
 @Data
 @NoArgsConstructor
@@ -32,4 +31,9 @@ public class UserModel implements Serializable {
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<RoleModel> roles = new HashSet<>();
+
+    public UserModel(String username, String password) {
+        this.username = username;
+        this.password = password;
+    }
 }
