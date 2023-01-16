@@ -4,6 +4,10 @@ import dev.childer.childerserver.models.ChildrenModel;
 import dev.childer.childerserver.repositories.ChildrenRepository;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.ZoneId;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -16,20 +20,20 @@ public class ChildrenService {
         this.childrenRepository = childrenRepository;
     }
 
-    public List<ChildrenModel> findAllChildren(){
+    public List<ChildrenModel> findAllChildren() {
         return this.childrenRepository.findAll();
     }
 
-    public Optional<ChildrenModel> findChildrenByID(Long id){
+    public Optional<ChildrenModel> findChildrenByID(Long id) {
         return this.childrenRepository.findById(id);
     }
 
-    public ChildrenModel saveChildren(ChildrenModel children){
+    public ChildrenModel saveChildren(ChildrenModel children) {
 
         return this.childrenRepository.save(children);
     }
 
-    public Optional<ChildrenModel> updateChildren(Long id , ChildrenModel newChildren){
+    public Optional<ChildrenModel> updateChildren(Long id, ChildrenModel newChildren) {
         return childrenRepository.findById(id).map(children -> {
             children.setFname(newChildren.getFname());
             children.setLname(newChildren.getLname());
@@ -46,7 +50,23 @@ public class ChildrenService {
 
     }
 
-    public void deleteByID(Long id){
+    public void deleteByID(Long id) {
         this.childrenRepository.deleteById(id);
+    }
+
+    public String calGrade(Date bod) {
+        LocalDate curDate = LocalDate.now();
+        int age = 0;
+        if ((bod != null) && (curDate != null)) {
+            age = Period.between(bod.toInstant().atZone(ZoneId.systemDefault()).toLocalDate(), curDate).getYears();
+        }
+        if (age == 3) {
+            return "1";
+        } else if (age == 4) {
+            return "2";
+        } else if (age == 5) {
+            return "3";
+        }
+        return "0";
     }
 }

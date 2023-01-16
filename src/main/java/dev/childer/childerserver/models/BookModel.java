@@ -32,9 +32,6 @@ public class BookModel implements Serializable {
     @Column(name = "SchoolYear", nullable = false)
     private int schoolYear;
 
-    @Column(name = "Room" , nullable = false)
-    private int room;
-
     @OneToOne(mappedBy = "book", cascade = CascadeType.ALL)
     private ChildrenModel children;
 }

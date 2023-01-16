@@ -52,19 +52,15 @@ public class ChildrenModel implements Serializable {
     private String tel;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinTable(
-            name = "IdentityBook",
-            joinColumns = @JoinColumn(name = "children_id"),
-            inverseJoinColumns = @JoinColumn(name = "book_id")
-    )
+    @JoinColumn(name = "book_id")
     private BookModel book;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinTable(
-            name = "IdentityAddress",
-            joinColumns = @JoinColumn(name = "children_id"),
-            inverseJoinColumns = @JoinColumn(name = "address_id")
-    )
+    @JoinColumn(name = "address_id")
     private AddressModel address;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "image_id")
+    private ImageModel image;
 
 }
