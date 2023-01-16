@@ -1,5 +1,6 @@
 package dev.childer.childerserver.models;
 
+import dev.childer.childerserver.models.Enums.ERole;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 

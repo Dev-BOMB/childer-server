@@ -1,4 +1,4 @@
-package dev.childer.childerserver.models;
+package dev.childer.childerserver.models.Enums;
 
 public enum ERole {
     ROLE_USER,
