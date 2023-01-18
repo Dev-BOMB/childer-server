@@ -28,18 +28,18 @@ public class BookService {
         return this.bookRepository.save(book);
     }
 
-    public Optional<BookModel> updateBook(Long id,BookModel newBook){
-        return bookRepository.findById(id).map(book -> {
-            book.setChildren(newBook.getChildren());
-            book.setAffiliation(newBook.getAffiliation());
-            book.setSchoolName(newBook.getSchoolName());
-            book.setSchoolYear(newBook.getSchoolYear());
-            book.setSchoolLocation(newBook.getSchoolLocation());
-
-            return bookRepository.save(book);
-        });
-
-    }
+//    public Optional<BookModel> updateBook(Long id,BookModel newBook){
+//        return bookRepository.findById(id).map(book -> {
+//            book.setChildren(newBook.getChildren());
+//            book.setAffiliation(newBook.getAffiliation());
+//            book.setSchoolName(newBook.getSchoolName());
+//            book.setSchoolYear(newBook.getSchoolYear());
+//            book.setSchoolLocation(newBook.getSchoolLocation());
+//
+//            return bookRepository.save(book);
+//        });
+//
+//    }
 
     public void deleteByID(Long id){
         this.bookRepository.deleteById(id);

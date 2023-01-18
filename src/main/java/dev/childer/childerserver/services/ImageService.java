@@ -16,13 +16,13 @@ public class ImageService {
     @Autowired
     private ImageRepository imageRepository;
 
-    public ImageModel uploadImage(MultipartFile file) throws IOException {
+    public String uploadImage(MultipartFile file) throws IOException {
         ImageModel imageData = imageRepository.save(ImageModel.builder()
                 .name(file.getOriginalFilename())
                 .type(file.getContentType())
                 .imageData(ImageUtils.compressImage(file.getBytes())).build());
         if (imageData != null) {
-            return imageData;
+            return String.format("http://localhost:8080/image/%s",imageData.getName());
         }
         return null;
     }

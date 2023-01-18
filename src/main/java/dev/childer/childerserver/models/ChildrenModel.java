@@ -13,7 +13,6 @@ import java.util.Date;
 @Table(name = "Children")
 @Data
 @NoArgsConstructor
-@JsonIdentityInfo(scope = ChildrenModel.class, generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class ChildrenModel implements Serializable {
 
     @Id
@@ -52,15 +51,11 @@ public class ChildrenModel implements Serializable {
     private String tel;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "book_id")
     private BookModel book;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "address_id")
     private AddressModel address;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "image_id")
-    private ImageModel image;
+    private String image;
 
 }

@@ -12,7 +12,6 @@ import java.io.Serializable;
 @Table(name = "BookModel")
 @Data
 @NoArgsConstructor
-@JsonIdentityInfo(scope = BookModel.class,generator= ObjectIdGenerators.PropertyGenerator.class, property="id")
 public class BookModel implements Serializable {
 
     @Id
@@ -32,6 +31,4 @@ public class BookModel implements Serializable {
     @Column(name = "SchoolYear", nullable = false)
     private int schoolYear;
 
-    @OneToOne(mappedBy = "book", cascade = CascadeType.ALL)
-    private ChildrenModel children;
 }
