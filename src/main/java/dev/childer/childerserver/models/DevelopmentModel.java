@@ -19,6 +19,8 @@ public class DevelopmentModel implements Serializable {
     @Column(name = "id",nullable = false)
     private Long id;
 
+    private long child_id;
+
     @Column(name = "DevelopmentTopic",nullable = false)
     private String developmentTopic;
 
@@ -29,5 +31,6 @@ public class DevelopmentModel implements Serializable {
     private String point;
 
     @OneToMany(cascade = CascadeType.ALL)
-    private Set<DesirableConditionModel> desirableCondition = new HashSet<>();
+    private Set<DesirableConditionModel> desirableCondition;
+
 }
