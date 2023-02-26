@@ -30,7 +30,7 @@ public class DevelopmentModel implements Serializable {
     @Column(name = "Point",nullable = false)
     private String point;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    private Set<DesirableConditionModel> desirableCondition;
+    @OneToOne(cascade = CascadeType.ALL)
+    private DesirableConditionModel desirableCondition;
 
 }

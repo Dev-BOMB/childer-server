@@ -17,28 +17,31 @@ public class AssessmentFormService {
     }
 
 
-    public List<AssessmentFormModel> findAllAssessmentForm(){
+    public List<AssessmentFormModel> findAllAssessmentForm() {
         return this.assessmentFormRepository.findAll();
     }
 
-    public Optional<AssessmentFormModel> findAssessmentFormByID(Long id){
+    public Optional<AssessmentFormModel> findAssessmentFormByID(Long id) {
         return this.assessmentFormRepository.findById(id);
     }
 
-    public AssessmentFormModel saveAssessmentForm(AssessmentFormModel assessmentForm){
+    public AssessmentFormModel saveAssessmentForm(AssessmentFormModel assessmentForm) {
         return this.assessmentFormRepository.save(assessmentForm);
     }
 
-    public Optional<AssessmentFormModel> updateAssessmentForm(Long id, AssessmentFormModel newAssessmentForm){
+    public Optional<AssessmentFormModel> updateAssessmentForm(Long id, AssessmentFormModel newAssessmentForm) {
         return assessmentFormRepository.findById(id).map(assessmentForm -> {
             assessmentForm.setTitle(newAssessmentForm.getTitle());
             assessmentForm.setObjective(newAssessmentForm.getObjective());
-            assessmentForm.setScore(newAssessmentForm.getScore());
             return assessmentFormRepository.save(assessmentForm);
         });
     }
 
-    public void deleteByID(Long id){
+    public void deleteByID(Long id) {
         this.assessmentFormRepository.deleteById(id);
+    }
+
+    public List<AssessmentFormModel> saveAssessmentFormAll(List<AssessmentFormModel> assessmentForm) {
+        return this.assessmentFormRepository.saveAll(assessmentForm);
     }
 }

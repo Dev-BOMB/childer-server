@@ -32,23 +32,20 @@ public class ChildrenController {
     @Autowired
     private ObjectMapper objectMapper;
 
-    @Autowired
-    private ChildrenConvert childrenConvert;
-
     public ChildrenController(ChildrenService childrenService) {
         this.childrenService = childrenService;
     }
 
     @GetMapping("")
-    public @ResponseBody ResponseEntity<List<ChildrenDTO>> getAllChildren() {
-        List<ChildrenDTO> childrenDTOList = this.childrenConvert.modelToDto(this.childrenService.findAllChildren());
-        return new ResponseEntity<>(childrenDTOList, HttpStatus.OK);
+    public @ResponseBody ResponseEntity<List<ChildrenModel>> getAllChildren() {
+        List<ChildrenModel> children = this.childrenService.findAllChildren();
+        return new ResponseEntity<>(children, HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    public @ResponseBody ResponseEntity<ChildrenDTO> getOneChildren(@PathVariable Long id) {
+    public @ResponseBody ResponseEntity<ChildrenModel> getOneChildren(@PathVariable Long id) {
         Optional<ChildrenModel> childrenModel = this.childrenService.findChildrenByID(id);
-        return new ResponseEntity<>(this.childrenConvert.modelToDto(childrenModel), HttpStatus.OK);
+        return new ResponseEntity<>(childrenModel.get(), HttpStatus.OK);
     }
 
     @PostMapping("")

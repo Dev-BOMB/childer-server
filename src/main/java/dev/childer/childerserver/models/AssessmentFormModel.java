@@ -22,6 +22,13 @@ public class AssessmentFormModel {
     @Column(name = "Objective",nullable = false)
     private String objective;
 
-    @Column(name = "Score")
-    private int score;
+    @Column(nullable = false)
+    private int level;
+
+    @Column(nullable = false)
+    private String field;
+
+    @Column(nullable = false)
+    private String week;
+
 }

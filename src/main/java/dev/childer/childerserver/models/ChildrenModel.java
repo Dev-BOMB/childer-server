@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -58,5 +59,8 @@ public class ChildrenModel implements Serializable {
     private AddressModel address;
 
     private String image;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    private Set<EstimateModel> estimates = new HashSet<>();
 
 }

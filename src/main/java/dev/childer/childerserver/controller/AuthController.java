@@ -58,10 +58,6 @@ public class AuthController {
 
         ResponseCookie jwtCookie = jwtUtils.generateJwtCookie(userDetails);
 
-        List<String> roles = userDetails.getAuthorities().stream()
-                .map(item -> item.getAuthority())
-                .collect(Collectors.toList());
-
         return ResponseEntity.ok().header(HttpHeaders.SET_COOKIE, jwtCookie.toString())
                 .body(jwtCookie.getValue());
     }
@@ -86,8 +82,6 @@ public class AuthController {
             strRoles.forEach(role -> {
                 switch (role) {
                     case "admin":
-//                        RoleModel adminRole = roleRepository.findByName(ERole.ROLE_ADMIN)
-//                                .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
                         RoleModel adminRole = new RoleModel();
                         adminRole.setName(ERole.ROLE_ADMIN);
                         roleRepository.save(adminRole);
@@ -95,8 +89,6 @@ public class AuthController {
 
                         break;
                     default:
-//                        RoleModel userRole = roleRepository.findByName(ERole.ROLE_USER)
-//                                .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
                         RoleModel userRole = new RoleModel();
                         userRole.setName(ERole.ROLE_USER);
                         roleRepository.save(userRole);

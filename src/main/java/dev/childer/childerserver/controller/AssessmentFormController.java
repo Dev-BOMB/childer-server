@@ -20,50 +20,55 @@ public class AssessmentFormController {
     private AssessmentFormService assessmentFormService;
 
     @GetMapping("")
-    public @ResponseBody ResponseEntity<List<AssessmentFormModel>> getAllAssessmentForm(){
+    public @ResponseBody ResponseEntity<List<AssessmentFormModel>> getAllAssessmentForm() {
         try {
             return new ResponseEntity<>(this.assessmentFormService.findAllAssessmentForm(), HttpStatus.OK);
-        }catch (Exception e){
+        } catch (Exception e) {
             throw e;
         }
     }
 
     @GetMapping("/{id}")
-    public @ResponseBody ResponseEntity<Optional<AssessmentFormModel>> getOneAssessmentForm(@PathVariable Long id){
+    public @ResponseBody ResponseEntity<Optional<AssessmentFormModel>> getOneAssessmentForm(@PathVariable Long id) {
         try {
-            return new ResponseEntity<>(this.assessmentFormService.findAssessmentFormByID(id),HttpStatus.OK);
-        }catch (Exception e){
+            return new ResponseEntity<>(this.assessmentFormService.findAssessmentFormByID(id), HttpStatus.OK);
+        } catch (Exception e) {
             throw e;
         }
     }
 
     @PostMapping("")
-    public @ResponseBody ResponseEntity<AssessmentFormModel> postAssessment(@RequestBody AssessmentFormModel assessmentForm){
+    public @ResponseBody ResponseEntity<AssessmentFormModel> postAssessment(@RequestBody AssessmentFormModel assessmentForm) {
         try {
-            return new ResponseEntity<>(this.assessmentFormService.saveAssessmentForm(assessmentForm),HttpStatus.OK);
-        }catch (Exception e){
+            return new ResponseEntity<>(this.assessmentFormService.saveAssessmentForm(assessmentForm), HttpStatus.OK);
+        } catch (Exception e) {
             throw e;
         }
     }
 
     @PutMapping("/{id}")
-    public @ResponseBody ResponseEntity<MessageResponse> putAssessmentForm(@PathVariable Long id , @RequestBody AssessmentFormModel assessmentForm){
+    public @ResponseBody ResponseEntity<MessageResponse> putAssessmentForm(@PathVariable Long id, @RequestBody AssessmentFormModel assessmentForm) {
         try {
-            Optional<AssessmentFormModel> updateData = this.assessmentFormService.updateAssessmentForm(id,assessmentForm);
+            Optional<AssessmentFormModel> updateData = this.assessmentFormService.updateAssessmentForm(id, assessmentForm);
 
-            return new ResponseEntity<>(new MessageResponse(String.format("%d has updated.",updateData.get().getId())),HttpStatus.OK);
-        }catch (Exception e){
+            return new ResponseEntity<>(new MessageResponse(String.format("%d has updated.", updateData.get().getId())), HttpStatus.OK);
+        } catch (Exception e) {
             throw e;
         }
     }
 
     @DeleteMapping("/{id}")
-    public @ResponseBody ResponseEntity<String> deleteAssessmentForm(@PathVariable Long id){
+    public @ResponseBody ResponseEntity<String> deleteAssessmentForm(@PathVariable Long id) {
         try {
             this.assessmentFormService.deleteByID(id);
-            return new ResponseEntity<>(String.format("%d has deleted.",id),HttpStatus.OK);
-        }catch (Exception e){
+            return new ResponseEntity<>(String.format("%d has deleted.", id), HttpStatus.OK);
+        } catch (Exception e) {
             throw e;
         }
+    }
+
+    @PostMapping("/saveall")
+    public @ResponseBody ResponseEntity<List<AssessmentFormModel>> postAll(@RequestBody List<AssessmentFormModel> assessmentFormModelList) {
+        return new ResponseEntity<>(this.assessmentFormService.saveAssessmentFormAll(assessmentFormModelList), HttpStatus.CREATED);
     }
 }
