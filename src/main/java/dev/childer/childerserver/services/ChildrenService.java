@@ -2,6 +2,7 @@ package dev.childer.childerserver.services;
 
 import dev.childer.childerserver.models.ChildrenModel;
 import dev.childer.childerserver.repositories.ChildrenRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -14,7 +15,8 @@ import java.util.Optional;
 @Service
 public class ChildrenService {
 
-    private final ChildrenRepository childrenRepository;
+    @Autowired
+    private ChildrenRepository childrenRepository;
 
     public ChildrenService(ChildrenRepository childrenRepository) {
         this.childrenRepository = childrenRepository;
